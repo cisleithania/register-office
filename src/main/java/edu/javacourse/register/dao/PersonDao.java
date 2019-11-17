@@ -7,6 +7,7 @@ import edu.javacourse.register.domain.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.util.List;
 
 public class PersonDao {
@@ -24,8 +25,12 @@ public class PersonDao {
 
     // получение списка персон
     public List<Person> findPersons() {
-        // будет возвращен список объектов класса Person (используется язык JQL)
-        return entityManager.createQuery("SELECT  p FROM Person p").getResultList();
+        // будет возвращен список объектов класса Person (используется язык JPAQL/HQL)
+        // named query (именованные запросы), экономия времени на компиляцию
+        Query query = entityManager.createNamedQuery("Person.findPersons");
+        // имя параметра запроса
+        query.setParameter("personId", 1L);
+        return  query.getResultList();
     }
 
 }

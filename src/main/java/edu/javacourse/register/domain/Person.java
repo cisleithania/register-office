@@ -11,6 +11,14 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // стратегия наследования (SINGLE_TABLE - наследование отдельных таблиц)
 // по какой колонке отличаются объекты (название столбца, целое число)
 @DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
+// именованный запрос Person.findPersons
+@NamedQueries({
+    @NamedQuery(name = "Person.findPersons",
+    query =  "SELECT  p FROM Person p " +
+            "LEFT JOIN FETCH p.passports " +
+            "LEFT JOIN FETCH p.birthCertificate " +
+            "WHERE p.personId = :personId")
+})
 public class Person {
 
     // Mapping - какие поля в какие колонки прописать
