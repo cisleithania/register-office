@@ -4,33 +4,47 @@ package edu.javacourse.register.dao;
 
 import edu.javacourse.register.domain.Person;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.util.List;
 
 public class PersonDao {
 
     // необходимо создать Entity Manager
+    @PersistenceContext // автоматическое связывание менеджера сущностей с бином (прописано в springContext.xml)
     private EntityManager entityManager;
-
-    public PersonDao() {
-        // создание factory по имени persistence-unit в файле persistence.xml
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
-
-        // создание EntityManager, который близок к объекту session у hibernate
-        entityManager = factory.createEntityManager();
-    }
 
     // получение списка персон
     public List<Person> findPersons() {
         // будет возвращен список объектов класса Person (используется язык JPAQL/HQL)
         // named query (именованные запросы), экономия времени на компиляцию
         Query query = entityManager.createNamedQuery("Person.findPersons");
-        // имя параметра запроса
-        query.setParameter("personId", 1L);
         return  query.getResultList();
+    }
+
+    // добавление персоны в БД
+    public Long addPerson(Person person){
+
+//        // получение транзакции
+//        EntityTransaction tr = entityManager.getTransaction();
+//        // начало транзакции
+//        tr.begin();
+//        try{
+
+            // сохраняем персону в БД
+            entityManager.persist(person);
+            // запись сохраненных данных непосредственно в БД
+            entityManager.flush();
+
+//            // завершение транзакции
+//            tr.commit();
+//        } catch (Exception ex) {
+//            // отмена транзакции
+//            tr.rollback();
+//            throw new RuntimeException(ex);
+//        }
+
+        // возвращается Id персоны
+        return person.getPersonId();
     }
 
 }

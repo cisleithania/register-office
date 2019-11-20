@@ -16,10 +16,9 @@ import java.util.List;
     @NamedQuery(name = "Person.findPersons",
     query =  "SELECT  p FROM Person p " +
             "LEFT JOIN FETCH p.passports " +
-            "LEFT JOIN FETCH p.birthCertificate " +
-            "WHERE p.personId = :personId")
+            "LEFT JOIN FETCH p.birthCertificate")
 })
-public class Person {
+public abstract class Person {
 
     // Mapping - какие поля в какие колонки прописать
     // любая сущность, которая сохраняется в БД, должна иметь первичный ключ (аннотация @Id)
