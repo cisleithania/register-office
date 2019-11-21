@@ -13,19 +13,19 @@ public class PersonDaoTest {
 
     @Test
     public void findPersons() {
-        // получение персон
-        PersonDao dao = new PersonDao();
-        List<Person> persons = dao.findPersons();
-
-        persons.forEach(p -> {
-            // получение фамилий персон
-            System.out.println("Name:" + p.getFirstName());
-            // узнать имя класса
-            System.out.println("Class foe sex:" + p.getClass().getName());
-            // получть количество паспортов
-            System.out.println("Passports:" + p.getPassports().size());
-            // печать сертификатов
-            System.out.println("Birth:" + p.getBirthCertificate());
+//        // получение персон
+//        PersonDao dao = new PersonDao();
+//        List<Person> persons = dao.findPersons();
+//
+//        persons.forEach(p -> {
+//            // получение фамилий персон
+//            System.out.println("Name:" + p.getFirstName());
+//            // узнать имя класса
+//            System.out.println("Class foe sex:" + p.getClass().getName());
+//            // получть количество паспортов
+//            System.out.println("Passports:" + p.getPassports().size());
+//            // печать сертификатов
+//            System.out.println("Birth:" + p.getBirthCertificate());
 //            if (p instanceof PersonMale) {
 //                System.out.println("Birth Cert:" + ((PersonMale)p).getBirthCertificates().size() );
 //                System.out.println("Marriage Cert:" + ((PersonMale)p).getMarriageCertificates().size() );
@@ -33,6 +33,6 @@ public class PersonDaoTest {
 //                System.out.println("Birth Cert:" + ((PersonFemale)p).getBirthCertificates().size() );
 //                System.out.println("Marriage Cert:" + ((PersonFemale)p).getMarriageCertificates().size() );
 //            }
-        });
+//        });
     }
 }

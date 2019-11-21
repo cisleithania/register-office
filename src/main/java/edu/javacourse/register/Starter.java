@@ -14,10 +14,10 @@ public class Starter {
                 new String[]{"springContext.xml"}
         );
 
-        // получение бина, с указанием конкретного класса
-        MarriageController controller = context.getBean(MarriageController.class);
-//        MarriageController controller = context.getBean("controller", MarriageController.class);
-        // передача реквеста (пока пустой)
-        controller.findMarriageCertificate(new MarriageRequest());
+//        // получение бина, с указанием конкретного класса
+//        MarriageController controller = context.getBean(MarriageController.class);
+////        MarriageController controller = context.getBean("controller", MarriageController.class);
+//        // передача реквеста (пока пустой)
+//        controller.findMarriageCertificate(new MarriageRequest());
     }
 }
